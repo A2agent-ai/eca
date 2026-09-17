@@ -10,6 +10,34 @@ description: "Configure LLM providers in ECA: OpenAI, Anthropic, Copilot, Gemini
     
 ECA support lots of providers via its supported APIs (openai-chat, openai-responses, anthropic, ollama), allowing to connect to most avaialble providers if configured properly, if your provider is not in this list, feel free to open a issue:
 
+=== "A2Agent"
+
+    [A2Agent](https://a2agent.me/) is an OpenAI- and Anthropic-compatible API gateway providing unified access to DeepSeek, Qwen, GLM, Kimi, MiniMax, and other models.
+
+    Export your API key:
+
+    ```bash
+    export A2AGENT_API_KEY="your-api-key"
+    ```
+
+    Configure A2Agent as an OpenAI-compatible provider:
+
+    ```javascript title="~/.config/eca/config.json"
+    {
+      "providers": {
+        "a2agent": {
+          "api": "openai-chat",
+          "url": "https://api.a2agent.me/v1",
+          "key": "${env:A2AGENT_API_KEY}"
+        }
+      }
+    }
+    ```
+
+    ECA automatically discovers available models from `https://api.a2agent.me/v1/models`, so no static model list is required.
+
+    Documentation: [https://docs.a2agent.me](https://docs.a2agent.me)
+	
 === "Anthropic"
 
     1. Login to Anthropic via the chat command `/login`.
